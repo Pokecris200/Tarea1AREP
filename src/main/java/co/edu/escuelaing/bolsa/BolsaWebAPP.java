@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
 
 package co.edu.escuelaing.bolsa;
 
@@ -15,6 +11,7 @@ public class BolsaWebAPP {
 
     public static void main(String[] args) {
         port(getPort());
+        staticFiles.location("/public");
         
         get("/hello", (req, res) -> {
             
@@ -23,6 +20,10 @@ public class BolsaWebAPP {
         get("/intraday",(req,res) -> {
             res.type("application/json");
             return HttpConnectionExample.HttpApi();
+        });
+        get("/index", (req,res)-> {
+            res.redirect("/index.html");
+            return null; 
         });
     }
     static int getPort() {
